@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Obsidian for Educators — Screenshot Mockups</title>
+<style>
+  :root {
+    --bg: #eff1f5;
+    --surface: #e6e9ef;
+    --surface2: #ccd0da;
+    --sidebar: #e6e9ef;
+    --accent: #1e66f5;
+    --text: #4c4f69;
+    --text2: #5c5f77;
+    --heading: #dc8a78;
+    --border: #ccd0da;
+    --code: #e64553;
+    --callout-bg: #df8e1d0f;
+    --callout-border: #df8e1d;
+    --red: #d20f39;
+    --green: #40a02b;
+    --yellow: #df8e1d;
+    --blue: #1e66f5;
+    --font: system-ui, -apple-system, 'Inter', sans-serif;
+    --mono: 'SF Mono', 'JetBrains Mono', 'Cascadia Code', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #dce0e8;
+    font-family: var(--font);
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+  }
+  .page-sub {
+    font-size: 15px;
+    color: var(--text2);
+    margin-top: 6px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1400px;
+    width: 100%;
+  }
+
+  /* Mac window chrome */
+  .window {
+    background: var(--bg);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .window-titlebar {
+    background: #e6e9ef;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .window-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .window-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #ff5f57; }
+  .dot-yellow { background: #febc2e; }
+  .dot-green { background: #28c840; }
+
+  .window-title {
+    font-size: 13px;
+    color: var(--text2);
+    font-weight: 500;
+    margin-left: 8px;
+  }
+
+  .window-body {
+    display: flex;
+    height: 480px;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 220px;
+    background: var(--sidebar);
+    padding: 12px 0;
+    font-size: 13px;
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .sidebar-item {
+    padding: 5px 16px;
+    color: var(--text2);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: default;
+  }
+  .sidebar-item.active {
+    background: rgba(30, 102, 245, 0.12);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .sidebar-item.folder::before { content: "📁"; font-size: 12px; }
+  .sidebar-item.note::before { content: "📄"; font-size: 12px; }
+  .sidebar-item.template::before { content: "📋"; font-size: 12px; }
+  .sidebar-item.skill::before { content: "⚡"; font-size: 12px; }
+  .sidebar-indent { padding-left: 32px; }
+  .sidebar-indent2 { padding-left: 48px; }
+  .sidebar-label {
+    padding: 8px 16px 4px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #9ca0b0;
+    font-weight: 600;
+  }
+
+  /* Content area */
+  .content {
+    flex: 1;
+    padding: 20px 24px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .content h1 { font-size: 20px; color: var(--heading); margin-bottom: 12px; }
+  .content h2 { font-size: 16px; color: var(--text); margin: 16px 0 8px; }
+  .content p { margin-bottom: 10px; }
+  .content .meta { font-size: 12px; color: #9ca0b0; margin-bottom: 14px; display: flex; gap: 12px; }
+  .content .meta span { background: var(--surface2); padding: 2px 8px; border-radius: 4px; }
+
+  .callout {
+    padding: 10px 14px;
+    border-left: 4px solid var(--callout-border);
+    background: var(--callout-bg);
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 12px;
+    font-size: 13px;
+  }
+  .callout-title { font-weight: 600; margin-bottom: 4px; }
+  .callout.quote { border-color: var(--yellow); background: #df8e1d0a; }
+  .callout.important { border-color: var(--blue); background: #1e66f50a; }
+  .callout.tip { border-color: var(--green); background: #40a02b0a; }
+
+  .inline-code {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: var(--surface2);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--code);
+  }
+
+  .table-wrap {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .table-wrap th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--text2);
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .table-wrap td {
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tag {
+    display: inline-block;
+    background: var(--surface2);
+    color: var(--text2);
+    font-size: 11px;
+    padding: 1px 7px;
+    border-radius: 4px;
+    margin-right: 4px;
+  }
+  .checkbox { color: var(--green); margin-right: 4px; }
+
+  .emoji-big { font-size: 24px; }
+
+  .footer {
+    margin-top: 30px;
+    text-align: center;
+    color: var(--text2);
+    font-size: 14px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div style="text-align:center;">
+  <div class="page-title">📸 Obsidian for Educators — Screenshot Mockups</div>
+  <div class="page-sub">Designed to look like actual Obsidian windows. Screenshot each card or the full page.</div>
+</div>
+
+<div class="grid">
+
+  <!-- SCREENSHOT 1: Daily Note -->
+  <div class="window">
+    <div class="window-titlebar">
+      <div class="window-dots">
+        <div class="window-dot dot-red"></div>
+        <div class="window-dot dot-yellow"></div>
+        <div class="window-dot dot-green"></div>
+      </div>
+      <div class="window-title">Daily Note — June 12, 2026</div>
+    </div>
+    <div class="window-body">
+      <div class="sidebar">
+        <div class="sidebar-label">Vault</div>
+        <div class="sidebar-item folder active">00-INBOX</div>
+        <div class="sidebar-item folder">01-PERMANENT</div>
+        <div class="sidebar-item folder">02-LITERATURE</div>
+        <div class="sidebar-item folder">03-MAPS</div>
+        <div class="sidebar-item folder">04-PROJECTS</div>
+        <div class="sidebar-item note sidebar-indent active">Curriculum Redesign</div>
+        <div class="sidebar-item folder">05-DAILY</div>
+        <div class="sidebar-item note sidebar-indent active">2026-06-12 ✅</div>
+        <div class="sidebar-item folder">06-RESOURCES</div>
+        <div class="sidebar-item folder">07-OUTPUTS</div>
+        <div class="sidebar-item folder">08-COMPOUND</div>
+        <div class="sidebar-item folder">09-ARCHIVE</div>
+        <div class="sidebar-item folder">10-SYSTEM</div>
+      </div>
+      <div class="content">
+        <div class="meta"><span>📅 daily</span><span>🏷️ daily·teaching</span><span>📆 June 12, 2026</span></div>
+        <h1>🌅 June 12, 2026</h1>
+
+        <div class="callout quote">
+          <div class="callout-title">🎯 The One Thing</div>
+          Finalize Unit 3 assessment rubric before Monday's department meeting
+        </div>
+
+        <h2>📋 Schedule</h2>
+        <table class="table-wrap">
+          <tr><th>Time</th><th>Event</th></tr>
+          <tr><td>7:30 AM</td><td>Arrive, check mailbox</td></tr>
+          <tr><td>8:00 AM</td><td>Period 1 — Grade 10 English</td></tr>
+          <tr><td>10:00 AM</td><td>Prep — work on rubric</td></tr>
+          <tr><td>12:00 PM</td><td>Period 4 — Grade 11 Lit</td></tr>
+          <tr><td>2:00 PM</td><td>PLC meeting — assessment alignment</td></tr>
+        </table>
+
+        <h2>📝 Captures</h2>
+        <div class="callout tip">
+          <div class="callout-title">💡 Ideas</div>
+          New SEL check-in: daily one-word check-in using whiteboards
+        </div>
+        <div class="callout important">
+          <div class="callout-title">❓ Questions</div>
+          Student said "I can't focus in 5th period after lunch" — worth investigating
+        </div>
+
+        <h2>⚡ Decisions Made</h2>
+        <p><strong>DECISION:</strong> Move Unit 3 essay deadline from Friday to Monday<br>
+        <strong>CONTEXT:</strong> Students have a field trip Thursday<br>
+        <strong>REASONING:</strong> Better essays > meeting an arbitrary deadline</p>
+
+        <h2>🔄 Open Loops</h2>
+        <p><span class="checkbox">☐</span> Finalize Unit 3 rubric<br>
+        <span class="checkbox">☐</span> Email parent about Juan's missing assignments<br>
+        <span class="checkbox">☐</span> Order new whiteboard markers</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOT 2: Permanent Note -->
+  <div class="window">
+    <div class="window-titlebar">
+      <div class="window-dots">
+        <div class="window-dot dot-red"></div>
+        <div class="window-dot dot-yellow"></div>
+        <div class="window-dot dot-green"></div>
+      </div>
+      <div class="window-title">Executive Function Hidden Curriculum</div>
+    </div>
+    <div class="window-body">
+      <div class="sidebar">
+        <div class="sidebar-label">01-PERMANENT</div>
+        <div class="sidebar-item note active">Executive Function Hidden Curr...</div>
+        <div class="sidebar-item note">UDL Framework Principles</div>
+        <div class="sidebar-item note">Assignment Scaffolding Guide</div>
+        <div class="sidebar-item note">Classroom Management as Design</div>
+        <div class="sidebar-item note">Pre-Assessment Strategies</div>
+        <div class="sidebar-label">Tags</div>
+        <div class="sidebar-item"><span class="tag">pedagogy</span></div>
+        <div class="sidebar-item"><span class="tag">executive-function</span></div>
+        <div class="sidebar-item"><span class="tag">hidden-curriculum</span></div>
+      </div>
+      <div class="content">
+        <div class="meta"><span>💡 permanent</span><span>🏷️ pedagogy·executive-function</span><span>📅 Jun 12</span></div>
+        <h1>🧠 Executive Function Demands Are Hidden Curriculum</h1>
+
+        <div class="callout important">
+          <strong>In My Own Words</strong><br>
+          Students are not just learning content — they are also learning how to manage time, materials, and attention. These demands are almost never explicitly taught, yet they determine academic success as much as content knowledge does.<br><br>
+          Every assignment assumes a level of executive function skill that many students simply don't have yet. Asking a student to "manage their time" on a long-term project assumes they already have the neural infrastructure to plan, monitor progress, and adjust deadlines.
+        </div>
+
+        <h2>🔥 Why This Matters</h2>
+        <p>If we design assessments that reward existing executive function skills rather than teaching them, we're measuring privilege and development, not learning.</p>
+
+        <h2>⚡ The Tension</h2>
+        <p>Direct instruction in executive function skills takes classroom time away from content coverage. The solution isn't more minutes; it's integration.</p>
+
+        <div class="callout quote">
+          <em>"Executive functions are not a curriculum to add — they are a lens through which to see your existing curriculum."</em>
+        </div>
+
+        <h2>🔗 Connections</h2>
+        <p><span class="inline-code">[[Universal Design for Learning]]</span> — UDL's multiple means of engagement directly addresses this gap<br>
+        <span class="inline-code">[[Assignment Scaffolding]]</span> — breaking long-term projects into graded checkpoints externalizes executive function</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOT 3: Vault Structure + Templates -->
+  <div class="window">
+    <div class="window-titlebar">
+      <div class="window-dots">
+        <div class="window-dot dot-red"></div>
+        <div class="window-dot dot-yellow"></div>
+        <div class="window-dot dot-green"></div>
+      </div>
+      <div class="window-title">Vault Structure — Templates</div>
+    </div>
+    <div class="window-body">
+      <div class="sidebar">
+        <div class="sidebar-label">10-SYSTEM / templates</div>
+        <div class="sidebar-item template active">Daily Note.md</div>
+        <div class="sidebar-item template">Permanent Note.md</div>
+        <div class="sidebar-item template">Literature Note.md</div>
+        <div class="sidebar-item template">Map of Content.md</div>
+        <div class="sidebar-item template">Project Note.md</div>
+        <div class="sidebar-item template">Decision Note.md</div>
+        <div class="sidebar-item template">Reference Note.md</div>
+        <div class="sidebar-label">skills</div>
+        <div class="sidebar-item skill">Claude Prompts.md</div>
+        <div class="sidebar-item skill">Morning Brief Automation.md</div>
+        <div class="sidebar-item skill">Daily Note System.md</div>
+        <div class="sidebar-item skill">Intelligence Workflow.md</div>
+      </div>
+      <div class="content">
+        <h1>📋 7 Ready-to-Use Templates</h1>
+        <p style="margin-bottom:16px;">Insert any template with <span class="inline-code">Cmd+Shift+I</span>. Each is pre-structured for educator workflows.</p>
+
+        <table class="table-wrap">
+          <tr><th>Template</th><th>Best For</th></tr>
+          <tr><td><strong>Daily Note</strong></td><td>Your front door — schedule, captures, decisions, open loops, end-of-day reflection</td></tr>
+          <tr><td><strong>Permanent Note</strong></td><td>One atomic idea, in your own words, with connections to other notes</td></tr>
+          <tr><td><strong>Literature Note</strong></td><td>Process books, articles, and PD materials you consume</td></tr>
+          <tr><td><strong>Map of Content</strong></td><td>Navigate a topic when you have 15+ notes on it</td></tr>
+          <tr><td><strong>Project Note</strong></td><td>Curriculum planning, IEP prep, committee work — each gets its own tracker</td></tr>
+          <tr><td><strong>Decision Note</strong></td><td>Log important decisions with full context and reasoning</td></tr>
+          <tr><td><strong>Reference Note</strong></td><td>Standards, policies, frameworks — the stuff you look up often</td></tr>
+        </table>
+
+        <h2>⚡ AI-Enhanced Skills Included</h2>
+        <p><span class="tag">Claude Prompts</span> <span class="tag">Morning Brief</span> <span class="tag">Daily Note System</span> <span class="tag">Intelligence Workflow</span> <span class="tag">Permanent Note Writing</span> <span class="tag">MCP Setup</span></p>
+        <p style="margin-top:10px;font-size:13px;color:var(--text2);">Each skill is a ready-to-use prompt you can paste into Claude Desktop or any AI tool. No prompt engineering required.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOT 4: Morning Brief + Prompts -->
+  <div class="window">
+    <div class="window-titlebar">
+      <div class="window-dots">
+        <div class="window-dot dot-red"></div>
+        <div class="window-dot dot-yellow"></div>
+        <div class="window-dot dot-green"></div>
+      </div>
+      <div class="window-title">Skills — Claude Prompts</div>
+    </div>
+    <div class="window-body">
+      <div class="sidebar">
+        <div class="sidebar-label">10-SYSTEM / skills</div>
+        <div class="sidebar-item skill active">Claude Prompts.md</div>
+        <div class="sidebar-item skill">Morning Brief Automation.md</div>
+        <div class="sidebar-item skill">Daily Note System.md</div>
+        <div class="sidebar-item skill">Intelligence Workflow Prompts.md</div>
+        <div class="sidebar-item skill">Permanent Note Writing.md</div>
+        <div class="sidebar-item skill">Morning Routine.md</div>
+        <div class="sidebar-item skill">Claude Desktop MCP Setup.md</div>
+      </div>
+      <div class="content">
+        <h1>⚡ Ready-to-Use AI Prompts</h1>
+        <p style="margin-bottom:14px;">Drop any of these into Claude, ChatGPT, or your AI tool of choice. Each is pre-built for an educator's workflow.</p>
+
+        <h2 style="margin-top:0;">📊 Morning Brief Automation</h2>
+        <div style="background:var(--surface2);border-radius:6px;padding:12px;font-family:var(--mono);font-size:12px;line-height:1.5;margin-bottom:14px;color:var(--text);">
+          <span style="color:var(--text2);">> Read my daily note from today, check my open loops,<br>
+          > scan my permanent notes for connections to my current<br>
+          > projects, and produce a 3-bullet morning brief.</span>
+        </div>
+
+        <h2>🧠 Intelligence Workflow</h2>
+        <div style="background:var(--surface2);border-radius:6px;padding:12px;font-family:var(--mono);font-size:12px;line-height:1.5;margin-bottom:14px;color:var(--text);">
+          <span style="color:var(--text2);">> Read my INBOX and the last 3 daily notes. Surface<br>
+          > patterns, tensions, and decisions I should make today.<br>
+          > Connect anything new to existing permanent notes.</span>
+        </div>
+
+        <h2>📝 Permanent Note Writing</h2>
+        <div style="background:var(--surface2);border-radius:6px;padding:12px;font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--text);">
+          <span style="color:var(--text2);">> Turn this capture into a permanent note. One idea per note.<br>
+          > Use my own voice. Link it to at least 2 existing notes in<br>
+          > my vault. Include a "Why This Matters" section.</span>
+        </div>
+
+        <p style="margin-top:16px;padding:10px;background:var(--callout-bg);border-radius:6px;font-size:13px;border-left:4px solid var(--yellow);">
+          <strong>💡 Included:</strong> Claude Desktop MCP setup, Hammerspoon auto-copy, and full Obsidian plugin configuration guide.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOT 5: The Vault Folder System -->
+  <div class="window" style="grid-column:1/-1;max-width:700px;margin:0 auto;">
+    <div class="window-titlebar">
+      <div class="window-dots">
+        <div class="window-dot dot-red"></div>
+        <div class="window-dot dot-yellow"></div>
+        <div class="window-dot dot-green"></div>
+      </div>
+      <div class="window-title">The Educator's Second Brain — Vault Overview</div>
+    </div>
+    <div class="window-body" style="height:360px;">
+      <div class="sidebar" style="width:240px;">
+        <div class="sidebar-label">VAULT ROOT</div>
+        <div class="sidebar-item folder active">00-INBOX <span style="color:var(--green);font-size:11px;">← Dump everything here</span></div>
+        <div class="sidebar-item folder">01-PERMANENT <span style="color:var(--text2);font-size:11px;">Atomic ideas</span></div>
+        <div class="sidebar-item folder">02-LITERATURE <span style="color:var(--text2);font-size:11px;">Book & article notes</span></div>
+        <div class="sidebar-item folder">03-MAPS <span style="color:var(--text2);font-size:11px;">Topic navigation</span></div>
+        <div class="sidebar-item folder">04-PROJECTS <span style="color:var(--text2);font-size:11px;">Active work</span></div>
+        <div class="sidebar-item folder">05-DAILY <span style="color:var(--text2);font-size:11px;">One note per day</span></div>
+        <div class="sidebar-item folder">06-RESOURCES <span style="color:var(--text2);font-size:11px;">Reference material</span></div>
+        <div class="sidebar-item folder">07-OUTPUTS <span style="color:var(--text2);font-size:11px;">Finished work</span></div>
+        <div class="sidebar-item folder">08-COMPOUND <span style="color:var(--text2);font-size:11px;">AI insights</span></div>
+        <div class="sidebar-item folder">09-ARCHIVE <span style="color:var(--text2);font-size:11px;">Completed projects</span></div>
+        <div class="sidebar-item folder">10-SYSTEM <span style="color:var(--text2);font-size:11px;">Templates + skills</span></div>
+      </div>
+      <div class="content" style="display:flex;flex-direction:column;justify-content:center;">
+        <h1 style="font-size:22px;">🏫 Built by an Educator, for Educators</h1>
+        <p style="font-size:15px;margin-bottom:12px;">15 years in K-12 — teacher, counselor, administrator. This vault is designed for the chaos of school life.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:var(--surface2);border-radius:8px;padding:12px;">
+            <strong style="color:var(--accent);">✅ Zero decisions</strong><br>
+            <span style="font-size:13px;">Everything goes in INBOX during the day. Process later.</span>
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:12px;">
+            <strong style="color:var(--accent);">✅ One daily note</strong><br>
+            <span style="font-size:13px;">Schedule, captures, decisions, loops — all in one place.</span>
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:12px;">
+            <strong style="color:var(--accent);">✅ Projects tracked</strong><br>
+            <span style="font-size:13px;">Curriculum, IEPs, committees — each gets a folder.</span>
+          </div>
+          <div style="background:var(--surface2);border-radius:8px;padding:12px;">
+            <strong style="color:var(--accent);">✅ AI-ready</strong><br>
+            <span style="font-size:13px;">7 prompt skills included. Drop into any AI tool.</span>
+          </div>
+        </div>
+        <p style="margin-top:16px;font-size:15px;font-weight:600;color:var(--heading);">$19 — One-time purchase. Lifetime updates.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <a href="https://lsedesigns042.gumroad.com/l/obsidian-for-educators" target="_blank">📦 Obsidian for Educators on Gumroad</a>
+  &nbsp;·&nbsp; Built by Jennifer Barrett (15yr educator → AI operations)
+</div>
+
+</body>
+</html>
